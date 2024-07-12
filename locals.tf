@@ -1,3 +1,3 @@
 locals {
-  region="westeurope"
+  region="west europe"
 }

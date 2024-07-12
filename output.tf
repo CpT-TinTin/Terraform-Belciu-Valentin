@@ -19,3 +19,14 @@ output "vm2_ip" {
 output "vm3_ip" {
   value = azurerm_public_ip.publicip[2].ip_address
 }
+output "acr_admin_password" {
+  value = data.azurerm_container_registry.container_registry.admin_password
+}
+output "acr_admin_username" {
+  value = data.azurerm_container_registry.container_registry.admin_username
+  
+}
+output "acr_login_server" {
+  value = data.azurerm_container_registry.container_registry.login_server
+  
+}
