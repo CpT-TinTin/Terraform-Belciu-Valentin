@@ -4,7 +4,9 @@ resource "azurerm_container_registry" "container_registry" {
     location = azurerm_resource_group.rg.location
     sku = "Basic"
     admin_enabled = true
-  
+ lifecycle {
+        prevent_destroy = true
+    } 
 }
 data "azurerm_container_registry" "container_registry" {
     name = azurerm_container_registry.container_registry.name

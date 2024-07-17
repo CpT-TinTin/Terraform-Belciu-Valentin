@@ -43,9 +43,9 @@ os_profile_linux_config {
       "sudo add-apt-repository 'deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable'",
       "sudo apt-get update",
       "sudo apt-get install -y docker-ce",
-    "sudo docker login -u ${var.acr_admin_username} -p ${var.acr_admin_password} ${var.acr_login_server}",
-      "sudo docker pull ${var.acr_login_server}/my-nginx-image:v1",
-      "sudo docker run -d -p 80:80 ${var.acr_login_server}/my-nginx-image:v1"
+    "sudo docker login -u ${data.azurerm_container_registry.container_registry.admin_username} -p ${data.azurerm_container_registry.container_registry.admin_password} ${data.azurerm_container_registry.container_registry.login_server  }",
+      "sudo docker pull ${data.azurerm_container_registry.container_registry.login_server  }/nginx",
+      "sudo docker run -d -p 80:80 ${data.azurerm_container_registry.container_registry.login_server }/nginx"
     ]
   }
 }
