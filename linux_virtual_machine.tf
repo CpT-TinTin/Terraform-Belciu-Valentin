@@ -1,13 +1,19 @@
+variable "vm_names" {
+  description = "Set of VM names"
+  type = set(string)
+  default = [ "MagicVM0","MagicVM1" ]
+  
+}
 resource "azurerm_linux_virtual_machine" "MagicVM" {
-  count              = 2
-  name                = "MagicVM${count.index}"
+  for_each = var.vm_names
+  name                = each.value
   resource_group_name = azurerm_resource_group.rg.name
   location            = azurerm_resource_group.rg.location
-  size                = "Standard_DS1_v2"
+  size                = "Standard_B1s"
   admin_username      = "azureuser"
-  admin_password = random_password.pass[count.index].result
+  admin_password = random_password.pass[each.key].result
   network_interface_ids = [
-    azurerm_network_interface.nic[count.index].id,
+    azurerm_network_interface.nic[each.key].id,
   ]
 
   os_disk {
@@ -22,5 +28,5 @@ resource "azurerm_linux_virtual_machine" "MagicVM" {
     version   = "latest"
   }
       disable_password_authentication = false
-  computer_name  = "MagicVM${count.index+1}"
+  computer_name  = each.value
 }

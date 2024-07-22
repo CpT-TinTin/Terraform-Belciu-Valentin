@@ -1,4 +1,0 @@
-acr_login_server= data.azurerm_container_registry.container_registry.login_server  
-acr_admin_username = data.azurerm_container_registry.container_registry.admin_username
- acr_admin_password= data.azurerm_container_registry.container_registry.admin_password
-

@@ -3,13 +3,13 @@ resource "azurerm_virtual_machine" "DockerVm" {
         location = azurerm_resource_group.rg.location
         resource_group_name = azurerm_resource_group.rg.name   
         network_interface_ids = [azurerm_network_interface.nic.2.id]
-        vm_size = "Standard_DS1_v2"
+        vm_size = "Standard_B1s"
         delete_os_disk_on_termination = true
         delete_data_disks_on_termination = true
         storage_image_reference {
                 publisher = "Canonical"
                 offer = "UbuntuServer"
-                sku = "18.04-LTS"
+                sku = "22.04-LTS"
                 version = "latest"
         }
         storage_os_disk {
